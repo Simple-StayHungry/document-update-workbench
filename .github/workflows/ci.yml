@@ -35,11 +35,29 @@ jobs:
       - name: Assert the runtime stays standard-library only
         run: |
           python - <<'PY'
-          import ast, pathlib, sys
+          import ast, pathlib, sys, sysconfig
           # rapidfuzz is an explicitly guarded optional accelerator with a difflib
           # fallback; every other import must come from the standard library.
           OPTIONAL = {"rapidfuzz"}
-          std = set(sys.stdlib_module_names)
+          LOCAL = {"workbench", "explain_core", "server", "start"}
+          # sys.stdlib_module_names only exists on 3.10+; reconstruct the same set
+          # on 3.9 from builtins, the stdlib directory, and lib-dynload (where
+          # extension modules such as math and unicodedata actually live).
+          if hasattr(sys, "stdlib_module_names"):
+              std = set(sys.stdlib_module_names)
+          else:
+              std = set(sys.builtin_module_names)
+              lib = pathlib.Path(sysconfig.get_paths()["stdlib"])
+              for p in lib.iterdir():
+                  if p.is_dir():
+                      if p.name != "site-packages":
+                          std.add(p.name)
+                  else:
+                      std.add(p.name.split(".")[0])
+              dynload = lib / "lib-dynload"
+              if dynload.is_dir():
+                  for p in dynload.iterdir():
+                      std.add(p.name.split(".")[0])
           hits = []
           for f in sorted(pathlib.Path(".").rglob("*.py")):
               if f.parts[0] == "tests":
@@ -52,13 +70,13 @@ jobs:
                   elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
                       names = [node.module.split(".")[0]]
                   for n in names:
-                      if n in OPTIONAL or n in std or n in {"workbench", "explain_core", "server", "start"}:
+                      if n in OPTIONAL or n in std or n in LOCAL:
                           continue
                       hits.append(f"{f}: {n}")
           if hits:
               print("\n".join(sorted(set(hits))))
               sys.exit("runtime must stay standard-library only")
-          print("ok: runtime imports are standard library only")
+          print(f"ok: runtime imports are standard library only ({len(std)} stdlib names known)")
           PY
 
       - name: Run regression suite
