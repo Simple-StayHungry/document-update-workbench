@@ -1,5 +1,8 @@
 {
-  "build": "explain-workbench-1.13",
+  "build": "explain-workbench-1.20",
+  "version": "1.20",
+  "version_source": "workbench/version.py",
+  "generator": "tools/write_engine_manifest.py",
   "files": [
     {
       "path": "workbench/__init__.py",
@@ -19,7 +22,7 @@
     },
     {
       "path": "workbench/engine.py",
-      "sha256": "2773ce4376e328182b7ba1655759c2bcfca889845bc2bc7a78e844ab42052f66"
+      "sha256": "528f6b2197ec0692b22cc1e75eb2f7146a9a838ca7b45df8225929044e0f356f"
     },
     {
       "path": "workbench/figures.py",
@@ -43,7 +46,7 @@
     },
     {
       "path": "workbench/model.py",
-      "sha256": "3ff4b294963b84037a9b9bed570f8c1024a86c26768694559cc8b9964a905092"
+      "sha256": "13769d805e4266d597e4897ba8003403ac63038814306de94905dc7e07873a81"
     },
     {
       "path": "workbench/output_audit.py",
@@ -87,11 +90,27 @@
     },
     {
       "path": "workbench/version.py",
-      "sha256": "829aa8417ee483cf3742cf8eb6a1473fead8f15f1524487b1455d6474498e69b"
+      "sha256": "65bf9e57352983fd16239351c0d26a3bd490d1ffd8e4c9a1c7e47c0b49e326b5"
     },
     {
       "path": "workbench/wording.py",
       "sha256": "1db59e2ba39318590548c4142d28973fbbbd11414cd3fd3ff2fea4cb01a7ded7"
+    }
+  ],
+  "public_release_deltas": [
+    {
+      "path": "workbench/engine.py",
+      "baseline_sha256": "2773ce4376e328182b7ba1655759c2bcfca889845bc2bc7a78e844ab42052f66",
+      "delta": "用户可见提示文案：老师定稿 → 示例定稿",
+      "impact": "仅错误提示的措辞，不参与任何判定逻辑",
+      "reason": "公开版不出现内部称呼"
+    },
+    {
+      "path": "workbench/model.py",
+      "baseline_sha256": "3ff4b294963b84037a9b9bed570f8c1024a86c26768694559cc8b9964a905092",
+      "delta": "正则字面量：经广发证券对 → 经示例证券对",
+      "impact": "该替换收窄了「独立核查程序与结论保留」保护规则的触发面；是否改为泛化写法（如 经\\S{2,10}证券对）待定",
+      "reason": "公开版不出现具体承销商名称"
     }
   ]
 }

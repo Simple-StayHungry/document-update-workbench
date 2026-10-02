@@ -12,8 +12,7 @@ from xml.etree import ElementTree as E
 from workbench.model import Document
 from workbench.docxio import Package, w, text, local, transform_paragraph, validate_package
 from workbench.plans import font_normalize
-
-BUILD='explain-workbench-1.20'
+from workbench.version import BUILD
 
 DATE_TERMS=tuple(sorted((
  '本募集说明书签署之日','本募集说明书签署日','募集说明书签署之日','募集说明书签署日',

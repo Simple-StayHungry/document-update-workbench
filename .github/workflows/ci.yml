@@ -64,5 +64,12 @@ jobs:
       - name: Run regression suite
         run: python -m pytest -q
 
+      # The manifest is generated, and the version lives in exactly one place.
+      # If either drifts, the build must fail rather than silently accept it.
+      - name: Engine manifest must match the engine files and the version
+        run: |
+          python check_engine_sync.py
+          python tools/write_engine_manifest.py --check
+
       - name: Public release scan
         run: python tools/public_release_check.py
