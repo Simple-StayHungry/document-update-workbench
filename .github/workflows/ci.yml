@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: pytest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # Runs before anything is installed: proves the runtime really needs no packages.
+      - name: CLI must work with no packages installed
+        run: python run_batch.py --help
+
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest "python-docx>=1.1,<2"
+
+      - name: Assert the runtime stays standard-library only
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+          # rapidfuzz is an explicitly guarded optional accelerator with a difflib
+          # fallback; every other import must come from the standard library.
+          OPTIONAL = {"rapidfuzz"}
+          std = set(sys.stdlib_module_names)
+          hits = []
+          for f in sorted(pathlib.Path(".").rglob("*.py")):
+              if f.parts[0] == "tests":
+                  continue
+              tree = ast.parse(f.read_text(encoding="utf-8", errors="ignore"))
+              for node in ast.walk(tree):
+                  names = []
+                  if isinstance(node, ast.Import):
+                      names = [a.name.split(".")[0] for a in node.names]
+                  elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                      names = [node.module.split(".")[0]]
+                  for n in names:
+                      if n in OPTIONAL or n in std or n in {"workbench", "explain_core", "server", "start"}:
+                          continue
+                      hits.append(f"{f}: {n}")
+          if hits:
+              print("\n".join(sorted(set(hits))))
+              sys.exit("runtime must stay standard-library only")
+          print("ok: runtime imports are standard library only")
+          PY
+
+      - name: Run regression suite
+        run: python -m pytest -q
+
+      - name: Public release scan
+        run: python tools/public_release_check.py
