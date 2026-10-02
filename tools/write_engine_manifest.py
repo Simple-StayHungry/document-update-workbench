@@ -38,9 +38,9 @@ PUBLIC_RELEASE_DELTAS = [
     {
         "path": "workbench/model.py",
         "baseline_sha256": "3ff4b294963b84037a9b9bed570f8c1024a86c26768694559cc8b9964a905092",
-        "delta": "正则字面量：经广发证券对 → 经示例证券对",
-        "impact": "该替换收窄了「独立核查程序与结论保留」保护规则的触发面；是否改为泛化写法（如 经\\S{2,10}证券对）待定",
-        "reason": "公开版不出现具体承销商名称",
+        "delta": "specific underwriter literal -> generic securities-firm pattern",
+        "impact": "restores the original protection rule without exposing a specific underwriter",
+        "reason": "public release generalization",
     },
 ]
 

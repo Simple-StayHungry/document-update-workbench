@@ -46,7 +46,7 @@
     },
     {
       "path": "workbench/model.py",
-      "sha256": "13769d805e4266d597e4897ba8003403ac63038814306de94905dc7e07873a81"
+      "sha256": "1872513af4f67f00e9367cb2322202f7c2d592bcb1b692e5d3c6e0632ad97ba5"
     },
     {
       "path": "workbench/output_audit.py",
@@ -108,9 +108,9 @@
     {
       "path": "workbench/model.py",
       "baseline_sha256": "3ff4b294963b84037a9b9bed570f8c1024a86c26768694559cc8b9964a905092",
-      "delta": "正则字面量：经广发证券对 → 经示例证券对",
-      "impact": "该替换收窄了「独立核查程序与结论保留」保护规则的触发面；是否改为泛化写法（如 经\\S{2,10}证券对）待定",
-      "reason": "公开版不出现具体承销商名称"
+      "delta": "specific underwriter literal -> generic securities-firm pattern",
+      "impact": "restores the original protection rule without exposing a specific underwriter",
+      "reason": "public release generalization"
     }
   ]
 }
