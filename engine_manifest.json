@@ -1,0 +1,97 @@
+{
+  "build": "explain-workbench-1.13",
+  "files": [
+    {
+      "path": "workbench/__init__.py",
+      "sha256": "53656e2ef8d6257f846b42b7fa53a7579c2caab475b6ad092b96c86c7ab6fec1"
+    },
+    {
+      "path": "workbench/assurance.py",
+      "sha256": "b36149cf54b9a3a06e8fcdcf95ee06fbbe7926df550ee82f74bc8abdb7c76865"
+    },
+    {
+      "path": "workbench/compatibility.py",
+      "sha256": "24aa55296744fdda330070cccf7ed0157f23d481cf95268c0ac9329368088ce5"
+    },
+    {
+      "path": "workbench/docxio.py",
+      "sha256": "0842704e1d378cb8061ae027114aa0717414bc6dc716150ae6308df3594a48e5"
+    },
+    {
+      "path": "workbench/engine.py",
+      "sha256": "2773ce4376e328182b7ba1655759c2bcfca889845bc2bc7a78e844ab42052f66"
+    },
+    {
+      "path": "workbench/figures.py",
+      "sha256": "1054d0f76ed738639ef7524c8ee88e3bcce91f599d564bcef76a1af3a71c3baa"
+    },
+    {
+      "path": "workbench/ingest.py",
+      "sha256": "7943ded529dbe737772b998c3a5dbcf098ba4e37667fae685651654c28f1d128"
+    },
+    {
+      "path": "workbench/layout_policy.py",
+      "sha256": "263e3a9c2ea33a0f5a09c7a2161c4a3d4cf71de0f1f8cabd2daaa869c38eeb83"
+    },
+    {
+      "path": "workbench/matching.py",
+      "sha256": "a0ac7cfaddc408616db24a9dbbc9042aa335ea2a33d1432ed75f0f449e5df8bd"
+    },
+    {
+      "path": "workbench/missing_pipeline.py",
+      "sha256": "c872c62dc82ba2decc8aba95d4b81bada46e5a425df4746ce996166a97753384"
+    },
+    {
+      "path": "workbench/model.py",
+      "sha256": "3ff4b294963b84037a9b9bed570f8c1024a86c26768694559cc8b9964a905092"
+    },
+    {
+      "path": "workbench/output_audit.py",
+      "sha256": "4f08cca298e24df97263d5c7275231b582dfbad967afcd00a8bf3bc693e2196c"
+    },
+    {
+      "path": "workbench/plans.py",
+      "sha256": "417bdcfb3e74a8c3cd40afda85ccb5d349aef11d014c0e7977debd1569f5adf2"
+    },
+    {
+      "path": "workbench/precision.py",
+      "sha256": "045c5b4d14b195763e3291eac488e094260ebdfb7d2d2c88e393567293595f5d"
+    },
+    {
+      "path": "workbench/quality.py",
+      "sha256": "d64e10eb1af35fb909282a0994360af49cd92620d5b4d9806601d394071737e0"
+    },
+    {
+      "path": "workbench/scopes.py",
+      "sha256": "6ea9908e3bcaf9410f77dc6d70085272ce446f9b9f1e5e6152a2005626ca7b19"
+    },
+    {
+      "path": "workbench/section_items.py",
+      "sha256": "19d8efe6b17ea00195f9377713dc8fdc873b4de1ee8214e08209fa4a203c82c9"
+    },
+    {
+      "path": "workbench/source_additions.py",
+      "sha256": "bab2b18d788e34f93064b708f2a66faf8ef1cf37e5f64060c2a90bb7a6fe2dac"
+    },
+    {
+      "path": "workbench/source_coverage.py",
+      "sha256": "a00122e6a3ca0d14c27d07f7a4f649c6adcf47ec1e129e6e7a0c36b25698db6a"
+    },
+    {
+      "path": "workbench/source_policy.py",
+      "sha256": "bee0744355b1356e8d307f56b011a69b9da5c2ee1a98052feb8fd2fb5068af16"
+    },
+    {
+      "path": "workbench/table_projection.py",
+      "sha256": "82bfcab8d6bc404553ec029a72556165e81f457a26dc47f78ca2655db7309ede"
+    },
+    {
+      "path": "workbench/version.py",
+      "sha256": "829aa8417ee483cf3742cf8eb6a1473fead8f15f1524487b1455d6474498e69b"
+    },
+    {
+      "path": "workbench/wording.py",
+      "sha256": "1db59e2ba39318590548c4142d28973fbbbd11414cd3fd3ff2fea4cb01a7ded7"
+    }
+  ]
+}

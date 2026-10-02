@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f6f3ec">
+<title>说明性文件更新</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-step="import">
+<main class="stage">
+  <section class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="说明性文件更新">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-word">说明性文件更新</span>
+      </a>
+      <nav class="workflow" aria-label="工作流程">
+        <span class="step active" data-step="import">材料</span>
+        <span class="step" data-step="review">核对</span>
+        <span class="step" data-step="export">导出</span>
+      </nav>
+      <div class="topbar-end"><span class="build-pill">本地</span></div>
+    </header>
+
+    <section id="uploadPanel" class="import-panel">
+      <div class="import-center">
+      <div class="import-copy">
+        <span class="eyebrow">材料</span>
+        <h1>把文件放进来</h1>
+      </div>
+
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="导入材料">
+        <div class="drop-main">
+          <div class="drop-symbol" aria-hidden="true">＋</div>
+          <div>
+            <h2>拖拽文件或文件夹</h2>
+            <p>DOCX / ZIP</p>
+          </div>
+        </div>
+        <div class="drop-actions">
+          <button id="pickFiles" class="primary" type="button">选择文件</button>
+          <button id="pickFolder" class="secondary" type="button">选择文件夹</button>
+        </div>
+        <input id="fileInput" type="file" multiple accept=".docx,.zip" hidden>
+        <input id="folderInput" type="file" webkitdirectory multiple hidden>
+      </div>
+
+      <div id="selection" class="selection hidden">
+        <div class="selection-head">
+          <div><b id="selectionSummary"></b></div>
+          <button id="clearFiles" class="text-button" type="button">清空</button>
+        </div>
+        <div id="selectedFiles" class="selected-files"></div>
+        <div class="selection-foot">
+          <div id="status" class="status" aria-live="polite"></div>
+          <button id="analyzeBtn" class="primary analyze" type="button">开始分析 <span>→</span></button>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section id="reviewPanel" class="review hidden">
+      <div id="reviewDoneView" class="review-done hidden">
+        <div class="done-card">
+          <span class="done-kicker">核对完成</span>
+          <h1>无需人工确认</h1>
+          <p id="doneSummaryLine"></p>
+          <div id="doneSummary" class="done-summary"></div>
+          <button id="doneExportBtn" class="primary large" type="button">生成修订版 <span>→</span></button>
+          <a id="doneDownloadBtn" class="primary large download-inline hidden" href="/api/download">下载 ZIP</a>
+        </div>
+      </div>
+
+      <div id="manualReviewView" class="manual-review hidden">
+        <div class="manual-head">
+          <div>
+            <span class="manual-kicker">只显示真正需要你决定的事项</span>
+            <h1 id="manualTitle">需要确认</h1>
+            <p id="manualSubtitle"></p>
+          </div>
+          <div class="manual-head-actions">
+            <span id="manualCounter" class="manual-counter"></span>
+            <button id="manualExportBtn" class="primary" type="button">生成修订版 <span>→</span></button>
+          </div>
+        </div>
+
+        <div class="manual-workspace">
+          <aside class="manual-index">
+            <div class="manual-index-head">待确认事项</div>
+            <div id="manualList" class="manual-list"></div>
+          </aside>
+
+          <section class="manual-detail">
+            <div class="manual-location" id="manualLocation">修改章节</div>
+            <div id="manualDetailBody" class="manual-detail-body"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+
+<div id="loading" class="loading hidden">
+  <div class="loading-box">
+    <div class="loading-orbit" aria-hidden="true"><i></i></div>
+    <b id="loadingTitle">正在分析</b>
+    <span id="loadingText">正在整理材料…</span>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
